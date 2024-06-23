@@ -3,7 +3,13 @@ name: Build releases
 on:
   watch:
     types: started
-
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version'
+        required: true
+        default: '1.0.0'
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
